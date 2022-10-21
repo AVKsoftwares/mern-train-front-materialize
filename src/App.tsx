@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
+
 import './App.css';
+
+import LayoutNavbar from './components/LayoutNavbar';
+import Index from './pages/index';
+import AddExercice from './pages/addExercice';
+import UpdateExercice from './pages/updateExercice';
+import Exercice from './pages/exercice';
+import PageNotFound from './pages/page-not-found';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<LayoutNavbar />}>
+          <Route index element={<Index />} />
+          <Route path="/addExercice" element={<AddExercice />} />
+          <Route path="/updateExercice/:id" element={<UpdateExercice />} />
+          <Route path="/exercice/:id" element={<Exercice />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
